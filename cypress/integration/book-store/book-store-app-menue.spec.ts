@@ -13,13 +13,13 @@ describe('', () => {
 
     it('Left Side Panel Buttons should redirect to the correct page', () => {
         cy.clickLeftPanelButton(29)  //the button which I am interested in is 29th in the list of 34 similar elements
-        cy.assertCorrectLocation('/login')
+        cy.assertCorrectLocation('https://demoqa.com/login')
 
         cy.clickLeftPanelButton(30)  //the button which I am interested in is 30th in the list of 34 similar elements
-        cy.assertCorrectLocation('/books')
+        cy.assertCorrectLocation('https://demoqa.com/books')
 
         cy.clickLeftPanelButton(31)  //the button which I am interested in is 31st in the list of 34 similar elements
-        cy.assertCorrectLocation('/profile')
+        cy.assertCorrectLocation('https://demoqa.com/profile')
     })
 
 })
