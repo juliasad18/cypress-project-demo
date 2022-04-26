@@ -30,6 +30,15 @@ declare global {
   }
 }
 
+Cypress.Server.defaults({
+  delay: 500,
+  force404: false,
+  ignore: (xhr) => {
+    return true;
+  }
+})
+
+
 Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from failing the test
     return false
@@ -45,11 +54,12 @@ Cypress.Commands.add('clickLeftPanelButton', (elementPosition) => {
 
 Cypress.Commands.add('assertCorrectLocation', (location) => {
   cy.location().should((loc) => {
-    expect(loc.pathname.toString()).to.contain(location);
+    expect(loc.href.toString()).to.eq(location);
   })
 
 })
 
+// the following is not working
 Cypress.Commands.add('seedAndVisit', (seedData) => {
   cy.intercept('GET', 'https://demoqa.com/BookStore/v1/Books', seedData)
   cy.visit('/books')
